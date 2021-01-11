@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>The Very Starry Night</title>
+    <style>
+      body{
+        margin:0;
+      }
+      body{
+        background-image:url('./starry night.jpg');
+        background-repeat: no-repeat;
+        background-position:50% 0%;
+        /* background-margin: 8 */
+      }
+      canvas{
+        padding-left:0;
+        padding-right:0;
+        margin-left:auto;
+        margin-right:auto;
+        display:block;
+      }
+
+      h1{
+        font-size: 50px;
+        text-align:center;
+        margin-top:10px;
+        margin-bottom:10px;
+      }
+      h2{
+        font-size:20px;
+        text-align:center;
+        margin-top:20px;
+        font-weight:500;
+      }
+
+    </style>
+  </head>
+  <body>
+    <canvas class = "canvas" width = "970" height="768"></canvas>
+
+    <script type="text/javascript">
+      const canvas = document.querySelector('.canvas');
+      const context = canvas.getContext('2d');
+      let opacity = 0;
+      let timerId;
+      var a = true;
+      var numb = 0.0025;
+
+      function draw1(){
+        context.clearRect(0,0,canvas.width,canvas.height);
+        var radgrad1 = context.createRadialGradient(879,137,67.5,879,137,120);
+        radgrad1.addColorStop(0, '#336699');
+        radgrad1.addColorStop(0.5, '#336699');
+        radgrad1.addColorStop(1, '#336699');
+        context.globalAlpha=0;
+
+        context.fillStyle = radgrad1;
+        context.fillRect(797.5,65.5,115,115);
+
+        context.beginPath();
+        context.globalAlpha=opacity;
+        context.arc(879, 137, 150, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(685, 179, 42, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(590, 70, 48, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(399.5, 50.5, 26.5, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(337, 407, 67.5, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(336.5, 35.5, 35.5, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(318.5, 252.5, 29.5, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(231, 133, 41, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(225.5, 26.5, 25.5, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(120, 368, 36, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(105.5, 35.5, 49.5, 0, 2*Math.PI);
+        context.fill();
+
+        context.beginPath();
+        context.arc(46.5, 349.5, 24.5, 0, 2*Math.PI);
+        context.fill();
+
+        if(opacity > 0.3){
+          a = false;}
+        else if(opacity<0){
+          a = true;}
+
+        if(a){
+          opacity += numb;}
+        else{
+          opacity -= numb;}
+
+
+        timerId = requestAnimationFrame(draw1);
+      }
+
+      canvas.addEventListener('click', () => {
+        draw1();
+      });
+
+
+    </script>
+    <h1>The Very Starry Night</h1>
+    <h2>If you click the canvas one time, the stars will be blinking.<br> And if you click more, the blinking speed will be faster.</h2>
+  </body>
+</html>
